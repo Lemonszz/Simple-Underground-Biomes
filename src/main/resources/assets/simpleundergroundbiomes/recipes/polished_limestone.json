@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "simpleundergroundbiomes:limestone"
+    }
+  },
+  "result": {
+    "item": "simpleundergroundbiomes:limestone_polished",
+    "count": 4
+  }
+}
