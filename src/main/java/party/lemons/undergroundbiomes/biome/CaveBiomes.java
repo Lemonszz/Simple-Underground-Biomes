@@ -37,7 +37,25 @@ public class CaveBiomes
 				new CaveBiome(Blocks.HARDENED_CLAY.getDefaultState()).setRegistryName(UndergroundBiomes.MODID, "adobe"),
 				new CaveBiome(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.ANDESITE)).setRegistryName(UndergroundBiomes.MODID, "andesite"),
 				new CaveBiome(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.DIORITE)).setRegistryName(UndergroundBiomes.MODID, "diorite"),
-				new CaveBiome(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.GRANITE)).setRegistryName(UndergroundBiomes.MODID, "granite")
+				new CaveBiome(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.GRANITE)).setRegistryName(UndergroundBiomes.MODID, "granite"),
+
+				new CaveBiomeMixed(
+						Blocks.STONE.getDefaultState(),
+						Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.ANDESITE),
+						Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.DIORITE),
+						Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.GRANITE)
+						).setRegistryName(UndergroundBiomes.MODID, "vanilla_mix"),
+
+				new CaveBiomeMixed(
+						Blocks.STONE.getDefaultState(),
+						Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.ANDESITE),
+						ModBlocks.BASALT.getDefaultState(),
+						ModBlocks.NORITE.getDefaultState()
+						).setRegistryName(UndergroundBiomes.MODID,"greyland"),
+
+				new CaveBiomeMixed(ModBlocks.BASALT.getDefaultState(), ModBlocks.SLATE.getDefaultState()).setRegistryName(UndergroundBiomes.MODID, "darkness"),
+				new CaveBiomeMixed(ModBlocks.MARBLE.getDefaultState(), Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.DIORITE)).setRegistryName(UndergroundBiomes.MODID, "lightness"),
+				new CaveBiomeMixed(ModBlocks.RHYOLITE.getDefaultState(), Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.GRANITE)).setRegistryName(UndergroundBiomes.MODID, "orange")
 		);
 	}
 

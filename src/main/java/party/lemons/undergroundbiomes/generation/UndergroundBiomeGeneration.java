@@ -18,6 +18,7 @@ import party.lemons.undergroundbiomes.util.MathStuff;
 public class UndergroundBiomeGeneration
 {
 	private FastNoise generationNoise;
+	private FastNoise secondaryNoise;
 
 	public UndergroundBiomeGeneration()
 	{
@@ -33,6 +34,9 @@ public class UndergroundBiomeGeneration
 		generationNoise.SetFrequency(0.016F);
 		generationNoise.SetCellularDistanceFunction(FastNoise.CellularDistanceFunction.Manhattan);
 		generationNoise.SetGradientPerturbAmp(70);
+
+		secondaryNoise = new FastNoise((int)event.getWorld().getSeed());
+		secondaryNoise.SetFrequency(0.2F);
 	}
 
 	/**
@@ -75,7 +79,9 @@ public class UndergroundBiomeGeneration
 								int offSetZ = event.getWorld().rand.nextBoolean() ? (-1  + event.getWorld().rand.nextInt(3)) * event.getWorld().rand.nextInt(smoothingScale) : 0;
 								int offSetY = event.getWorld().rand.nextBoolean() ? (-1  + event.getWorld().rand.nextInt(3)) * event.getWorld().rand.nextInt(smoothingScale) : 0;
 
-								storage.set(x,y,z, getBiomeAt(new BlockPos(offSetX +(chunk.x * 16) + x, (storage.getYLocation() + (y + offSetY)), offSetZ + (chunk.z * 16) + z)).getReplacementBlock(y));
+								BlockPos pos = new BlockPos(offSetX +(chunk.x * 16) + x, (storage.getYLocation() + (y + offSetY)), offSetZ + (chunk.z * 16) + z);
+
+								storage.set(x,y,z, getBiomeAt(pos).getReplacementBlock(secondaryNoise, pos));
 							}
 
 						}

@@ -2,6 +2,8 @@ package party.lemons.undergroundbiomes.biome;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import party.lemons.undergroundbiomes.noise.FastNoise;
 
 /**
  * Created by Sam on 2/08/2018.
@@ -23,7 +25,7 @@ public class CaveBiome extends net.minecraftforge.registries.IForgeRegistryEntry
 		this(stoneReplacement, 5);
 	}
 
-	public IBlockState getReplacementBlock(int height)
+	public IBlockState getReplacementBlock(FastNoise noise, BlockPos pos)
 	{
 		return stoneReplacement;
 	}
