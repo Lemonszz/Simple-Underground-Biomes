@@ -24,7 +24,7 @@ public class UndergroundBiomes
 	{
 		UndergroundBiomeGeneration gen = new UndergroundBiomeGeneration();
 
-		MinecraftForge.EVENT_BUS.register(new UndergroundBiomeGeneration());
-		MinecraftForge.TERRAIN_GEN_BUS.register(new UndergroundBiomeGeneration());
+		MinecraftForge.EVENT_BUS.register(gen);
+		MinecraftForge.TERRAIN_GEN_BUS.register(gen);
 	}
 }
