@@ -75,7 +75,7 @@ public class UndergroundBiomeGeneration
 								int offSetZ = event.getWorld().rand.nextBoolean() ? (-1  + event.getWorld().rand.nextInt(3)) * event.getWorld().rand.nextInt(smoothingScale) : 0;
 								int offSetY = event.getWorld().rand.nextBoolean() ? (-1  + event.getWorld().rand.nextInt(3)) * event.getWorld().rand.nextInt(smoothingScale) : 0;
 
-								storage.set(x,y,z, getBiomeAt(new BlockPos(offSetX +(chunk.x * 16) + x, (y + offSetY) / 3, offSetZ + (chunk.z * 16) + z)).getReplacementBlock(y));
+								storage.set(x,y,z, getBiomeAt(new BlockPos(offSetX +(chunk.x * 16) + x, (storage.getYLocation() + (y + offSetY)), offSetZ + (chunk.z * 16) + z)).getReplacementBlock(y));
 							}
 
 						}
