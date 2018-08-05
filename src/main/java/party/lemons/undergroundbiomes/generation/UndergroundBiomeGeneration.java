@@ -32,7 +32,7 @@ public class UndergroundBiomeGeneration
 		generationNoise = new FastNoise((int) event.getWorld().getSeed());
 		generationNoise.SetNoiseType(FastNoise.NoiseType.Cellular);
 		generationNoise.SetFrequency(0.016F);
-		generationNoise.SetCellularDistanceFunction(FastNoise.CellularDistanceFunction.Manhattan);
+		generationNoise.SetCellularDistanceFunction(FastNoise.CellularDistanceFunction.Natural);
 		generationNoise.SetGradientPerturbAmp(70);
 
 		secondaryNoise = new FastNoise((int)event.getWorld().getSeed());
