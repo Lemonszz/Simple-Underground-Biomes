@@ -1,0 +1,29 @@
+tile.simpleundergroundbiomes.basalt.name=Basalt
+tile.simpleundergroundbiomes.basalt_cobblestone.name=Basaltbruchstein
+tile.simpleundergroundbiomes.basalt_brick.name=Basaltziegel
+tile.simpleundergroundbiomes.basalt_polished.name=Polierter Basalt
+
+tile.simpleundergroundbiomes.marble.name=Marmor
+tile.simpleundergroundbiomes.marble_cobblestone.name=Marmorbruchstein
+tile.simpleundergroundbiomes.marble_brick.name=Marmorziegel
+tile.simpleundergroundbiomes.marble_polished.name=Polierter Marmor
+
+tile.simpleundergroundbiomes.limestone.name=Kalkstein
+tile.simpleundergroundbiomes.limestone_cobblestone.name=Kalkbruchstein
+tile.simpleundergroundbiomes.limestone_brick.name=Kalksteinziegel
+tile.simpleundergroundbiomes.limestone_polished.name=Polierter Kalkstein
+
+tile.simpleundergroundbiomes.slate.name=Schiefer
+tile.simpleundergroundbiomes.slate_cobblestone.name=Schieferbruchstein
+tile.simpleundergroundbiomes.slate_brick.name=Schieferziegel
+tile.simpleundergroundbiomes.slate_polished.name=Polierter Schiefer
+
+tile.simpleundergroundbiomes.norite.name=Norit
+tile.simpleundergroundbiomes.norite_cobblestone.name=Noritbruchstein
+tile.simpleundergroundbiomes.norite_brick.name=Noritziegel
+tile.simpleundergroundbiomes.norite_polished.name=Polierter Norit
+
+tile.simpleundergroundbiomes.rhyolite.name=Rhyolith
+tile.simpleundergroundbiomes.rhyolite_cobblestone.name=Rhyolithbruchstein
+tile.simpleundergroundbiomes.rhyolite_brick.name=Rhyolithziegel
+tile.simpleundergroundbiomes.rhyolite_polished.name=Polierter Rhyolith
