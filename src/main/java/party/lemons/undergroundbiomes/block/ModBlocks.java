@@ -65,6 +65,7 @@ public class ModBlocks
 		OreDictionary.registerOre("cobblestone", new ItemStack(Blocks.STONE, 1, 1));
 		OreDictionary.registerOre("cobblestone", new ItemStack(Blocks.STONE, 1, 3));
 		OreDictionary.registerOre("cobblestone", new ItemStack(Blocks.STONE, 1, 5));
+		OreDictionary.registerOre("cobblestone", new ItemStack(Blocks.STAINED_HARDENED_CLAY, 1));
 	}
 
 	@SubscribeEvent
