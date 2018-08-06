@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import party.lemons.undergroundbiomes.UndergroundBiomes;
 import party.lemons.undergroundbiomes.block.ModBlocks;
+import party.lemons.undergroundbiomes.config.ModConfig;
 import party.lemons.undergroundbiomes.util.MathStuff;
 
 import java.util.ArrayList;
@@ -30,38 +31,38 @@ public class CaveBiomes
 	public static void onRegisterCaveBiome(RegistryEvent.Register<CaveBiome> event)
 	{
 		event.getRegistry().registerAll(
-				new CaveBiome(Blocks.STONE.getDefaultState()).setRegistryName(UndergroundBiomes.MODID, "stone"),
-				new CaveBiome(ModBlocks.BASALT.getDefaultState()).setRegistryName(UndergroundBiomes.MODID, "basalt"),
-				new CaveBiome(ModBlocks.MARBLE.getDefaultState()).setRegistryName(UndergroundBiomes.MODID, "marble"),
-				new CaveBiome(ModBlocks.SLATE.getDefaultState()).setRegistryName(UndergroundBiomes.MODID, "slate"),
-				new CaveBiome(ModBlocks.LIMESTONE.getDefaultState()).setRegistryName(UndergroundBiomes.MODID, "limestone"),
-				new CaveBiome(ModBlocks.NORITE.getDefaultState()).setRegistryName(UndergroundBiomes.MODID, "norite"),
-				new CaveBiome(ModBlocks.RHYOLITE.getDefaultState()).setRegistryName(UndergroundBiomes.MODID, "rhyloite"),
-				new CaveBiome(Blocks.HARDENED_CLAY.getDefaultState()).setRegistryName(UndergroundBiomes.MODID, "adobe"),
-				new CaveBiome(Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.CYAN)).setRegistryName(UndergroundBiomes.MODID, "cyan"),
-				new CaveBiome(Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.SILVER)).setRegistryName(UndergroundBiomes.MODID, "lightgrey"),
-				new CaveBiome(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.ANDESITE)).setRegistryName(UndergroundBiomes.MODID, "andesite"),
-				new CaveBiome(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.DIORITE)).setRegistryName(UndergroundBiomes.MODID, "diorite"),
-				new CaveBiome(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.GRANITE)).setRegistryName(UndergroundBiomes.MODID, "granite"),
+				new CaveBiome(Blocks.STONE.getDefaultState(), ModConfig.weights.VANILLA_STONE_WEIGHT).setRegistryName(UndergroundBiomes.MODID, "stone"),
+				new CaveBiome(ModBlocks.BASALT.getDefaultState(), ModConfig.weights.BASALT_WEIGHT).setRegistryName(UndergroundBiomes.MODID, "basalt"),
+				new CaveBiome(ModBlocks.MARBLE.getDefaultState(), ModConfig.weights.MARBLE_WEIGHT).setRegistryName(UndergroundBiomes.MODID, "marble"),
+				new CaveBiome(ModBlocks.SLATE.getDefaultState(), ModConfig.weights.SLATE_WEIGHT).setRegistryName(UndergroundBiomes.MODID, "slate"),
+				new CaveBiome(ModBlocks.LIMESTONE.getDefaultState(), ModConfig.weights.LIMESTONE_WEIGHT).setRegistryName(UndergroundBiomes.MODID, "limestone"),
+				new CaveBiome(ModBlocks.NORITE.getDefaultState(), ModConfig.weights.NORITE_WEIGHT).setRegistryName(UndergroundBiomes.MODID, "norite"),
+				new CaveBiome(ModBlocks.RHYOLITE.getDefaultState(), ModConfig.weights.RHYOLITE_WEIGHT).setRegistryName(UndergroundBiomes.MODID, "rhyloite"),
+				new CaveBiome(Blocks.HARDENED_CLAY.getDefaultState(), ModConfig.weights.HARDENED_CLAY_WEIGHT).setRegistryName(UndergroundBiomes.MODID, "adobe"),
+				new CaveBiome(Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.CYAN), ModConfig.weights.CYAN_CLAY_WEIGHT).setRegistryName(UndergroundBiomes.MODID, "cyan"),
+				new CaveBiome(Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.SILVER), ModConfig.weights.LIGHTGREY_CLAY_WEIGHT).setRegistryName(UndergroundBiomes.MODID, "lightgrey"),
+				new CaveBiome(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.ANDESITE),ModConfig.weights.ANDESITE_WEIGHT).setRegistryName(UndergroundBiomes.MODID, "andesite"),
+				new CaveBiome(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.DIORITE), ModConfig.weights.DIORITE_CLAY_WEIGHT).setRegistryName(UndergroundBiomes.MODID, "diorite"),
+				new CaveBiome(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.GRANITE), ModConfig.weights.GRANITE_CLAY_WEIGHT).setRegistryName(UndergroundBiomes.MODID, "granite"),
 
-				new CaveBiomeMixed(
+				new CaveBiomeMixed(ModConfig.weights.VANILLA_MIX_WEIGHT,
 						Blocks.STONE.getDefaultState(),
 						Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.ANDESITE),
 						Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.DIORITE),
 						Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.GRANITE)
 						).setRegistryName(UndergroundBiomes.MODID, "vanilla_mix"),
 
-				new CaveBiomeMixed(
+				new CaveBiomeMixed(ModConfig.weights.GREY_MIX_WEIGHT,
 						Blocks.STONE.getDefaultState(),
 						Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.ANDESITE),
 						ModBlocks.BASALT.getDefaultState(),
 						ModBlocks.NORITE.getDefaultState()
 						).setRegistryName(UndergroundBiomes.MODID,"greyland"),
 
-				new CaveBiomeMixed(ModBlocks.BASALT.getDefaultState(), ModBlocks.SLATE.getDefaultState()).setRegistryName(UndergroundBiomes.MODID, "darkness"),
-				new CaveBiomeMixed(ModBlocks.MARBLE.getDefaultState(), Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.DIORITE)).setRegistryName(UndergroundBiomes.MODID, "lightness"),
-				new CaveBiomeMixed(ModBlocks.RHYOLITE.getDefaultState(), Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.GRANITE)).setRegistryName(UndergroundBiomes.MODID, "orange"),
-				new CaveBiomeMixed(Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.CYAN),Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.SILVER)).setRegistryName(UndergroundBiomes.MODID, "mixed_clay")
+				new CaveBiomeMixed(ModConfig.weights.BLACK_MIX_WEIGHT,ModBlocks.BASALT.getDefaultState(), ModBlocks.SLATE.getDefaultState()).setRegistryName(UndergroundBiomes.MODID, "darkness"),
+				new CaveBiomeMixed(ModConfig.weights.WHITE_MIX_WEIGHT,ModBlocks.MARBLE.getDefaultState(), Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.DIORITE)).setRegistryName(UndergroundBiomes.MODID, "lightness"),
+				new CaveBiomeMixed(ModConfig.weights.ORANGE_MIX_WEIGHT,ModBlocks.RHYOLITE.getDefaultState(), Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.GRANITE)).setRegistryName(UndergroundBiomes.MODID, "orange"),
+				new CaveBiomeMixed(ModConfig.weights.CLAY_MIX_WEIGHT,Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.CYAN),Blocks.STAINED_HARDENED_CLAY.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.SILVER)).setRegistryName(UndergroundBiomes.MODID, "mixed_clay")
 		);
 	}
 
@@ -87,4 +88,7 @@ public class CaveBiomes
 		}
 		return weightedList;
 	}
+
+	@GameRegistry.ObjectHolder("basalt")
+	public static CaveBiome BASALT = null;
 }

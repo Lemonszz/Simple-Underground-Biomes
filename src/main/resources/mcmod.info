@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "simpleundergroundbiomes",
+  "name": "Simple Underground Biomes",
+  "description": "Simple Underground Biomes",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["Lemons"],
+  "credits": "RiverLeviathan",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

@@ -2,6 +2,7 @@ package party.lemons.undergroundbiomes.biome;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
+import party.lemons.undergroundbiomes.config.ModConfig;
 import party.lemons.undergroundbiomes.noise.FastNoise;
 import party.lemons.undergroundbiomes.util.MathStuff;
 
@@ -21,13 +22,13 @@ public class CaveBiomeMixed extends CaveBiome
 
 	public CaveBiomeMixed(IBlockState... stoneReplacements)
 	{
-		this(5, stoneReplacements[0]);
+		this(ModConfig.weights.DEFAULT_BIOME_WEIGHT, stoneReplacements[0]);
 	}
 
 	@Override
 	public IBlockState getReplacementBlock(FastNoise noise, BlockPos pos)
 	{
-		double value = noise.GetValue(pos.getX(), pos.getY(), pos.getZ());
+		double value = noise.GetNoise(pos.getX(), pos.getY(), pos.getZ());
 		if(value < 0)
 			value *= -1;
 		double mapped = MathStuff.map(value, 0, 1, 0, stones.length);

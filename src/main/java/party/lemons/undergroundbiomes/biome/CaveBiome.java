@@ -3,6 +3,7 @@ package party.lemons.undergroundbiomes.biome;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
+import party.lemons.undergroundbiomes.config.ModConfig;
 import party.lemons.undergroundbiomes.noise.FastNoise;
 
 /**
@@ -22,7 +23,7 @@ public class CaveBiome extends net.minecraftforge.registries.IForgeRegistryEntry
 
 	public CaveBiome(IBlockState stoneReplacement)
 	{
-		this(stoneReplacement, 5);
+		this(stoneReplacement, ModConfig.weights.DEFAULT_BIOME_WEIGHT);
 	}
 
 	public IBlockState getReplacementBlock(FastNoise noise, BlockPos pos)

@@ -2,27 +2,38 @@ package party.lemons.undergroundbiomes.generation;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
+import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import party.lemons.undergroundbiomes.biome.CaveBiome;
 import party.lemons.undergroundbiomes.biome.CaveBiomes;
+import party.lemons.undergroundbiomes.config.ModConfig;
 import party.lemons.undergroundbiomes.noise.FastNoise;
 import party.lemons.undergroundbiomes.util.MathStuff;
+
+import java.util.Random;
 
 /**
  * Created by Sam on 2/08/2018.
  */
-public class UndergroundBiomeGeneration
+public class UndergroundBiomeGeneration implements IWorldGenerator
 {
 	private FastNoise generationNoise;
 	private FastNoise secondaryNoise;
 
+	private WorldGenMineableBiome basaltCoalGenerator;
+	private WorldGenMineableBiome hardClayGoldGenerator;
+
 	public UndergroundBiomeGeneration()
 	{
-		generationNoise = new FastNoise();
 	}
 
 	@SubscribeEvent
@@ -31,12 +42,13 @@ public class UndergroundBiomeGeneration
 		//Using this event to set up the noise as it requires the world seed to setup.
 		generationNoise = new FastNoise((int) event.getWorld().getSeed());
 		generationNoise.SetNoiseType(FastNoise.NoiseType.Cellular);
-		generationNoise.SetFrequency(0.016F);
-		generationNoise.SetCellularDistanceFunction(FastNoise.CellularDistanceFunction.Natural);
+		generationNoise.SetFrequency(ModConfig.noise.BIOME_NOISE_FREQUENCY);
+		generationNoise.SetCellularDistanceFunction(ModConfig.noise.BIOME_NOISE_DISTANCE_FUNCTION);
 		generationNoise.SetGradientPerturbAmp(70);
 
 		secondaryNoise = new FastNoise((int)event.getWorld().getSeed());
-		secondaryNoise.SetFrequency(0.2F);
+		secondaryNoise.SetNoiseType(ModConfig.noise.SECONDARY_NOISE_TYPE);
+		secondaryNoise.SetFrequency(ModConfig.noise.SECONDARY_NOISE_FREQUENCY);
 	}
 
 	/**
@@ -57,6 +69,9 @@ public class UndergroundBiomeGeneration
 	@SubscribeEvent
 	public void populateChunk(PopulateChunkEvent.Post event)
 	{
+		if(!canGenerationInWorld(event.getWorld()))
+			return;
+
 		//Main generation
 
 		//Replace stone
@@ -93,4 +108,42 @@ public class UndergroundBiomeGeneration
 		//TODO: Other generation
 	}
 
+	public void initFeatures()
+	{
+		GameRegistry.registerWorldGenerator(this, 999);
+
+		basaltCoalGenerator = new WorldGenMineableBiome(Blocks.COAL_ORE.getDefaultState(), 17, CaveBiomes.BASALT);
+		hardClayGoldGenerator = new WorldGenMineableBiome(Blocks.GOLD_ORE.getDefaultState(), 5, CaveBiomes.BASALT);
+	}
+
+	public boolean canGenerationInWorld(World world)
+	{
+		return world.provider.getDimension() == 0;
+	}
+
+	@Override
+	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
+	{
+		if(!canGenerationInWorld(world))
+			return;
+
+		final int BASALT_COAL_ATTEMPTS = 45;
+		final int BASALT_COAL_MAX_LEVEL = 100;
+		generateOre( basaltCoalGenerator, rand, chunkX, chunkZ, world, BASALT_COAL_MAX_LEVEL, BASALT_COAL_ATTEMPTS);
+
+		final int MESA_GOLD_ATTEMPTS = 25;
+		final int MESA_GOLD_MAX_LEVEL = 60;
+		generateOre(hardClayGoldGenerator, rand, chunkX, chunkZ, world, MESA_GOLD_MAX_LEVEL, MESA_GOLD_ATTEMPTS);
+	}
+
+	public void generateOre(WorldGenerator generator, Random rand, int chunkX, int chunkZ, World world, int maxLevel, int attempts)
+	{
+		for(int i = 0; i < attempts; i++)
+		{
+			int x = chunkX * 16 + rand.nextInt(16);
+			int y = rand.nextInt(maxLevel);
+			int z = chunkZ * 16 + rand.nextInt(16);
+			generator.generate(world, rand, new BlockPos(x, y, z));
+		}
+	}
 }
