@@ -12,6 +12,7 @@ public class ModConfig
 {
 	public static BiomeWeights weights = new BiomeWeights();
 	public static NoiseSettings noise = new NoiseSettings();
+	public static OreSettings ores = new OreSettings();
 
 	public static class BiomeWeights
 	{
@@ -45,5 +46,14 @@ public class ModConfig
 
 		public FastNoise.NoiseType SECONDARY_NOISE_TYPE = FastNoise.NoiseType.Value;
 		public float SECONDARY_NOISE_FREQUENCY = 0.2F;
+	}
+
+	public static class OreSettings
+	{
+		public int BASALT_COAL_ATTEMPTS = 45;
+		public int BASALT_COAL_MAX_Y = 120;
+
+		public int HARD_CLAY_GOLD_ATTEMPTS = 25;
+		public int HARD_CLAY_GOLD_MAX_Y = 60;
 	}
 }

@@ -127,12 +127,12 @@ public class UndergroundBiomeGeneration implements IWorldGenerator
 		if(!canGenerationInWorld(world))
 			return;
 
-		final int BASALT_COAL_ATTEMPTS = 45;
-		final int BASALT_COAL_MAX_LEVEL = 100;
+		final int BASALT_COAL_ATTEMPTS = ModConfig.ores.BASALT_COAL_ATTEMPTS;
+		final int BASALT_COAL_MAX_LEVEL = ModConfig.ores.BASALT_COAL_MAX_Y;
 		generateOre( basaltCoalGenerator, rand, chunkX, chunkZ, world, BASALT_COAL_MAX_LEVEL, BASALT_COAL_ATTEMPTS);
 
-		final int MESA_GOLD_ATTEMPTS = 25;
-		final int MESA_GOLD_MAX_LEVEL = 60;
+		final int MESA_GOLD_ATTEMPTS = ModConfig.ores.HARD_CLAY_GOLD_ATTEMPTS;
+		final int MESA_GOLD_MAX_LEVEL = ModConfig.ores.HARD_CLAY_GOLD_MAX_Y;
 		generateOre(hardClayGoldGenerator, rand, chunkX, chunkZ, world, MESA_GOLD_MAX_LEVEL, MESA_GOLD_ATTEMPTS);
 	}
 
