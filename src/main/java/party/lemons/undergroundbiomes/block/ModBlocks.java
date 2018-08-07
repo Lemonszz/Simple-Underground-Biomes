@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 import party.lemons.undergroundbiomes.UndergroundBiomes;
+import party.lemons.undergroundbiomes.util.StringStuff;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -80,6 +81,11 @@ public class ModBlocks
 		oreDictCobble.forEach(b -> OreDictionary.registerOre("cobblestone", b));
 		oreDictStone.forEach(b -> OreDictionary.registerOre("stone", b));
 
+		blocks.forEach(b -> {
+			if(b instanceof BlockOreDict)
+				OreDictionary.registerOre(((BlockOreDict) b).getOreDictName(), b);
+		});
+
 		for(Map.Entry<Block, Block> entry: stoneSmelting.entrySet())
 		{
 			GameRegistry.addSmelting(entry.getValue(), new ItemStack(entry.getKey()), 0.1F);
@@ -94,19 +100,21 @@ public class ModBlocks
 	 */
 	public static void createStone(String name, MapColor color, IForgeRegistry<Block> registry)
 	{
-		BlockBiomeStoneVariant cobble = new BlockBiomeStoneVariant(color);
+		final String capName = StringStuff.capital(name);
+
+		BlockBiomeStoneVariant cobble = new BlockBiomeStoneVariant(color, "stone" + capName + "Cobblestone");
 		setStoneProperties(cobble, name, "_cobblestone");
 		registry.register(cobble);
 
-		BlockBiomeStoneVariant brick = new BlockBiomeStoneVariant(color);
+		BlockBiomeStoneVariant brick = new BlockBiomeStoneVariant(color, "stone" + capName + "Brick");
 		setStoneProperties(brick, name, "_brick");
 		registry.register(brick);
 
-		BlockBiomeStoneVariant polished = new BlockBiomeStoneVariant(color);
+		BlockBiomeStoneVariant polished = new BlockBiomeStoneVariant(color, "stone" + capName + "Polished");
 		setStoneProperties(polished, name, "_polished");
 		registry.register(polished);
 
-		BlockBiomeStone biomeStone = new BlockBiomeStone(color, cobble);
+		BlockBiomeStone biomeStone = new BlockBiomeStone(color, cobble, "stone" + capName);
 		setStoneProperties(biomeStone, name, "");
 		registry.register(biomeStone);
 

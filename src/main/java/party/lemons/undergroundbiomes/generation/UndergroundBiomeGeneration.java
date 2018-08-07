@@ -37,6 +37,13 @@ public class UndergroundBiomeGeneration implements IWorldGenerator
 	}
 
 	@SubscribeEvent
+	public void onWorldUnload(WorldEvent.Unload event)
+	{
+		generationNoise = null;
+		secondaryNoise = null;
+	}
+
+	@SubscribeEvent
 	public void onWorldLoad(WorldEvent.Load event)
 	{
 		//Using this event to set up the noise as it requires the world seed to setup.
@@ -69,7 +76,7 @@ public class UndergroundBiomeGeneration implements IWorldGenerator
 	@SubscribeEvent
 	public void populateChunk(PopulateChunkEvent.Post event)
 	{
-		if(!canGenerationInWorld(event.getWorld()))
+		if(!canGenerationInWorld(event.getWorld()) || generationNoise == null || secondaryNoise == null)
 			return;
 
 		//Main generation
@@ -124,7 +131,7 @@ public class UndergroundBiomeGeneration implements IWorldGenerator
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
 	{
-		if(!canGenerationInWorld(world))
+		if(!canGenerationInWorld(world) || generationNoise == null || secondaryNoise == null)
 			return;
 
 		final int BASALT_COAL_ATTEMPTS = ModConfig.ores.BASALT_COAL_ATTEMPTS;

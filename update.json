@@ -1,9 +1,10 @@
 {
   "homepage": "https://minecraft.curseforge.com/projects/simple-underground-biomes",
   "promos": {
-    "1.12.2-latest": "0.3.0"
+    "1.12.2-latest": "1.0.0"
   },
   "1.12.2": {
-    "0.3.0": "Added Configuration, Special Ore Gen & this update json"
+    "0.3.0": "Added Configuration, Special Ore Gen & this update json",
+    "1.0.0": "Full release, fixed a crash, added some ore dict entries on the stone"
   }
 }

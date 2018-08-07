@@ -13,13 +13,13 @@ import java.util.Random;
 /**
  * Created by Sam on 3/08/2018.
  */
-public class BlockBiomeStone extends Block
+public class BlockBiomeStone extends BlockOreDict
 {
 	private final Block drop;
 
-	public BlockBiomeStone(MapColor color, Block drop)
+	public BlockBiomeStone(MapColor color, Block drop, String oreDictName)
 	{
-		super(Material.ROCK, color);
+		super(Material.ROCK, color, oreDictName);
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 		this.setSoundType(SoundType.STONE);
 		this.drop = drop;
