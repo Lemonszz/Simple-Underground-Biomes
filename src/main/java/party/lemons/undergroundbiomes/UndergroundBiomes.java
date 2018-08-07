@@ -19,7 +19,7 @@ public class UndergroundBiomes
 {
 	public static final String MODID = "simpleundergroundbiomes";
 	public static final String MODNAME = "Underground Biomes";
-	public static final String VERSION = "0.3.0";
+	public static final String VERSION = "1.0.0";
 	public static final String UPDATE = "https://raw.githubusercontent.com/Lemonszz/Simple-Underground-Biomes/master/update.json";
 
 	public static UndergroundBiomeGeneration generation;
